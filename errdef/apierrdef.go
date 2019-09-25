@@ -72,6 +72,7 @@ const (
 	BASERR_INCORRECT_PUBKEY      EnumBasErr = BasErrBegin + 313 //无效的公钥格式。  这个不知是否与上个重复
 	BASERR_INCORRECT_FREQUENT    EnumBasErr = BasErrBegin + 314 //错误太频繁。
 	BASERR_NOT_ALLOW_STATE       EnumBasErr = BasErrBegin + 315 //当前状态不允许
+	BASERR_OBJECT_BE_USED        EnumBasErr = BasErrBegin + 316 //指定的对象已被占用
 
 	//500-999： 预先定义的服务内部错误(不对外显示错误信息，错误信息 统一表示为系统未知错误)
 	BASERR_SERVICE_UNKNOWN_ERROR         EnumBasErr = BasErrBegin + 500 //服务未知错误，     一般500到1000之间的错误。$实在不知道写什么错误就用这个$
@@ -218,6 +219,7 @@ var EnumBasErr_desc = map[EnumBasErr]string{
 	BASERR_INCORRECT_PUBKEY:      "IncorrectPublicKey",
 	BASERR_INCORRECT_FREQUENT:    "IncorrectFrequentLimit",
 	BASERR_NOT_ALLOW_STATE:       "NotAllowState",
+	BASERR_OBJECT_BE_USED:     "ObjectBeUsed",
 
 	//
 	BASERR_SERVICE_UNKNOWN_ERROR:           "ServiceUnknownError",
@@ -397,65 +399,65 @@ func GetGroupErrMsg(group string) map[int]*ErrorInfo {
 func init() {
 	err_msg = make(map[int]*ErrorInfo)
 
-	AddErrMsg(NoErr, "NoErr", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrInternal, "ErrInternal", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrDataCorrupted, "ErrDataCorrupted", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrCallFailed, "ErrCallFailed", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrIllegallyCall, "ErrIllegallyCall", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrNotFindAuth, "ErrNotFindAuth", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrNotFindSrv, "ErrNotFindSrv", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrNotFindFunction, "ErrNotFindFunction", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrConnectSrvFailed, "ErrConnectSrvFailed", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrRequestInvalid, "ErrRequestInvalid", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(NoErr, "NoErr", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrInternal, "ErrInternal", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrDataCorrupted, "ErrDataCorrupted", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrCallFailed, "ErrCallFailed", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrIllegallyCall, "ErrIllegallyCall", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrNotFindAuth, "ErrNotFindAuth", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrNotFindSrv, "ErrNotFindSrv", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrNotFindFunction, "ErrNotFindFunction", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrConnectSrvFailed, "ErrConnectSrvFailed", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrRequestInvalid, "ErrRequestInvalid", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//
+	//AddErrMsg(ErrAccountSrvNoUser, "ErrAccountSrvNoUser", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvUpdateProfile, "ErrAccountSrvUpdateProfile", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvListUsers, "ErrAccountSrvListUsers", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvListUsersCount, "ErrAccountSrvListUsersCount", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountPubKeyParse, "ErrAccountPubKeyParse", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvSetFrozen, "ErrAccountSrvSetFrozen", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvAudite, "ErrAccountSrvAudite", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvBindChildUser, "ErrAccountSrvBindChildUser", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvListUserCustodianInfo, "ErrAccountSrvListUserCustodianInfo", []string{HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvUserAssetCustodianInfoAlreadyExist, "ErrAccountSrvUserAssetCustodianInfoAlreadyExist", []string{HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvUserAssetCustodianInfoNotExist, "ErrAccountSrvUserAssetCustodianInfoNotExist", []string{HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvUserAssetCustodianFeeLimit, "ErrAccountSrvUserAssetCustodianFeeLimit", []string{HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvAddUserAssetCustodianInfo, "ErrAccountSrvAddUserAssetCustodianInfo", []string{HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvUpdateUserAssetCustodianInfo, "ErrAccountSrvUpdateUserAssetCustodianInfo", []string{HttpRouterAdmin})
+	//AddErrMsg(ErrAccountSrvDelUserAssetCustodianInfo, "ErrAccountSrvDelUserAssetCustodianInfo", []string{HttpRouterAdmin})
+	//
+	//AddErrMsg(ErrAuthSrvNoUserKey, "ErrAuthSrvNoUserKey", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAuthSrvNoPublicKey, "ErrAuthSrvNoPublicKey", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAuthSrvNoApiLevel, "ErrAuthSrvNoApiLevel", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAuthSrvUserFrozen, "ErrAuthSrvUserFrozen", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAuthSrvIllegalData, "ErrAuthSrvIllegalData", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAuthSrvIllegalDataType, "ErrAuthSrvIllegalDataType", []string{HttpRouterUser, HttpRouterAdmin})
+	//AddErrMsg(ErrAuthSrvIllegalAudite, "ErrAuthSrvIllegalAudite", []string{HttpRouterApi})
+	//AddErrMsg(ErrAuthSrvIllegalIp, "ErrAuthSrvIllegalIp", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
+	//
+	//AddErrMsg(ErrPushSrvPushData, "ErrPushSrvPushData", []string{HttpRouterUser, HttpRouterAdmin})
+	//
+	//// cobank错误码信息
+	//AddErrMsg(ErrorFailed, "ErrorFailed", []string{HttpRouterApi, HttpRouterApi})
+	//AddErrMsg(ErrorUserInvalid, "ErrorUserInvalid", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorUserFrozen, "ErrorUserFrozen", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorUserNoAuthority, "ErrorUserNoAuthority", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorParseDataFailed, "ErrorParseDataFailed", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorParameter, "ErrorParameter", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorAsssetNotOnline, "ErrorAsssetNotOnline", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorRepeatOrder, "ErrorRepeatOrder", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorNotEnoughBalance, "ErrorNotEnoughBalance", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorAccountAbnormal, "ErrorAccountAbnormal", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorCreateOrder, "ErrorCreateOrder", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorSendDataFailed, "ErrorSendDataFailed", []string{HttpRouterApi, HttpRouterUser})
+	//AddErrMsg(ErrorNotFindPayAddress, "ErrorNotFindPayAddress", []string{HttpRouterUser, HttpRouterAdmin})
 
-	AddErrMsg(ErrAccountSrvNoUser, "ErrAccountSrvNoUser", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvUpdateProfile, "ErrAccountSrvUpdateProfile", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvListUsers, "ErrAccountSrvListUsers", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvListUsersCount, "ErrAccountSrvListUsersCount", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountPubKeyParse, "ErrAccountPubKeyParse", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvSetFrozen, "ErrAccountSrvSetFrozen", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvAudite, "ErrAccountSrvAudite", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvBindChildUser, "ErrAccountSrvBindChildUser", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvListUserCustodianInfo, "ErrAccountSrvListUserCustodianInfo", []string{HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvUserAssetCustodianInfoAlreadyExist, "ErrAccountSrvUserAssetCustodianInfoAlreadyExist", []string{HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvUserAssetCustodianInfoNotExist, "ErrAccountSrvUserAssetCustodianInfoNotExist", []string{HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvUserAssetCustodianFeeLimit, "ErrAccountSrvUserAssetCustodianFeeLimit", []string{HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvAddUserAssetCustodianInfo, "ErrAccountSrvAddUserAssetCustodianInfo", []string{HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvUpdateUserAssetCustodianInfo, "ErrAccountSrvUpdateUserAssetCustodianInfo", []string{HttpRouterAdmin})
-	AddErrMsg(ErrAccountSrvDelUserAssetCustodianInfo, "ErrAccountSrvDelUserAssetCustodianInfo", []string{HttpRouterAdmin})
-
-	AddErrMsg(ErrAuthSrvNoUserKey, "ErrAuthSrvNoUserKey", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAuthSrvNoPublicKey, "ErrAuthSrvNoPublicKey", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAuthSrvNoApiLevel, "ErrAuthSrvNoApiLevel", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAuthSrvUserFrozen, "ErrAuthSrvUserFrozen", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAuthSrvIllegalData, "ErrAuthSrvIllegalData", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAuthSrvIllegalDataType, "ErrAuthSrvIllegalDataType", []string{HttpRouterUser, HttpRouterAdmin})
-	AddErrMsg(ErrAuthSrvIllegalAudite, "ErrAuthSrvIllegalAudite", []string{HttpRouterApi})
-	AddErrMsg(ErrAuthSrvIllegalIp, "ErrAuthSrvIllegalIp", []string{HttpRouterApi, HttpRouterUser, HttpRouterAdmin})
-
-	AddErrMsg(ErrPushSrvPushData, "ErrPushSrvPushData", []string{HttpRouterUser, HttpRouterAdmin})
-
-	// cobank错误码信息
-	AddErrMsg(ErrorFailed, "ErrorFailed", []string{HttpRouterApi, HttpRouterApi})
-	AddErrMsg(ErrorUserInvalid, "ErrorUserInvalid", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorUserFrozen, "ErrorUserFrozen", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorUserNoAuthority, "ErrorUserNoAuthority", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorParseDataFailed, "ErrorParseDataFailed", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorParameter, "ErrorParameter", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorAsssetNotOnline, "ErrorAsssetNotOnline", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorRepeatOrder, "ErrorRepeatOrder", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorNotEnoughBalance, "ErrorNotEnoughBalance", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorAccountAbnormal, "ErrorAccountAbnormal", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorCreateOrder, "ErrorCreateOrder", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorSendDataFailed, "ErrorSendDataFailed", []string{HttpRouterApi, HttpRouterUser})
-	AddErrMsg(ErrorNotFindPayAddress, "ErrorNotFindPayAddress", []string{HttpRouterUser, HttpRouterAdmin})
-
-	for code, desc := range EnumBasErr_desc {
-		if code == BASERR_SUCCESS {
-			continue
-		}
-		AddErrMsg(int(code), desc, []string{HttpRouterUser, HttpRouterAdmin})
-	}
+	//for code, desc := range EnumBasErr_desc {
+	//	if code == BASERR_SUCCESS {
+	//		continue
+	//	}
+	//	AddErrMsg(int(code), desc, []string{HttpRouterUser, HttpRouterAdmin})
+	//}
 	for _, errInfo := range err_msg {
 		if errInfo.Code == NoErr {
 			continue
