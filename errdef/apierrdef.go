@@ -149,19 +149,21 @@ const (
 	BASERR_MARKETING_LUCKDRAW_AWARD_EXISTS                     EnumBasErr = BasMoreErrBegin + 1070 //活动奖品已存在
 	BASERR_MARKETING_LUCKDRAW_AWARD_NOFOUND                    EnumBasErr = BasMoreErrBegin + 1071 //活动奖品未找到
 	BASERR_MARKETING_LUCKDRAW_AWARD_INVALID                    EnumBasErr = BasMoreErrBegin + 1072 //活动精度设置有误
-	BASERR_MARKETING_LUCKDRAW_DRAWER_ZERO                      EnumBasErr = BasMoreErrBegin + 1075 //名额抢完
-	BASERR_MARKETING_LUCKDRAW_DRAWER_EXISTS                    EnumBasErr = BasMoreErrBegin + 1076 //已抽过了
-	BASERR_MARKETING_LUCKDRAW_DRAWER_TIMEOUT                   EnumBasErr = BasMoreErrBegin + 1077 //抽到的奖品过期
-	BASERR_MARKETING_LUCKDRAW_DRAWER_NOFOUND                   EnumBasErr = BasMoreErrBegin + 1078 //未找到找到的奖品
-	BASERR_MARKETING_LUCKDRAW_DRAWER_INVALID                   EnumBasErr = BasMoreErrBegin + 1079 //奖品无效
-	BASERR_MARKETING_LUCKDRAW_DRAWER_TRANSFERFLAG_NOT_AFFECTED EnumBasErr = BasMoreErrBegin + 1080 //转账状态未改变
-	BASERR_MARKETING_LUCKDRAW_ACTIVITY_HAS_ON                  EnumBasErr = BasMoreErrBegin + 1081 //活动已开始
+	BASERR_MARKETING_LUCKDRAW_DRAWER_ZERO                EnumBasErr = BasMoreErrBegin + 1075       //名额抢完
+	BASERR_MARKETING_LUCKDRAW_DRAWER_EXISTS              EnumBasErr = BasMoreErrBegin + 1076       //已抽过了
+	BASERR_MARKETING_LUCKDRAW_DRAWER_TIMEOUT             EnumBasErr = BasMoreErrBegin + 1077       //抽到的奖品过期
+	BASERR_MARKETING_LUCKDRAW_DRAWER_NOFOUND             EnumBasErr = BasMoreErrBegin + 1078       //未找到找到的奖品
+	BASERR_MARKETING_LUCKDRAW_DRAWER_INVALID             EnumBasErr = BasMoreErrBegin + 1079       //奖品无效
+	BaserrMarketingLuckdrawDrawerTransferflagNotAffected EnumBasErr = BasMoreErrBegin + 1080       //转账状态未改变
+	BASERR_MARKETING_LUCKDRAW_ACTIVITY_HAS_ON            EnumBasErr = BasMoreErrBegin + 1081       //活动已开始
+
 
 	//1100-1149
 	BASERR_CARDMARKET_PHONEPOOL_LOCK_FAIL EnumBasErr = BasMoreErrBegin + 1100 //号码加锁失败
 	BASERR_CARDMARKET_PHONEPOOL_UNLOCK_FAIL EnumBasErr = BasMoreErrBegin + 1101 //号码解锁失败
 	BASERR_CARDMARKET_PHONEPOOL_USE_FAIL EnumBasErr = BasMoreErrBegin + 1102 //号码占用失败
 	BASERR_CARDMARKET_PHONEPOOL_UNUSE_FAIL EnumBasErr = BasMoreErrBegin + 1103 //号码解占用失败
+
 
 )
 
@@ -294,20 +296,22 @@ var EnumBasErr_desc = map[EnumBasErr]string{
 	BASERR_MARKETING_LUCKDRAW_AWARD_EXISTS:                     "MarketingLuckDrawAwardExists",
 	BASERR_MARKETING_LUCKDRAW_AWARD_NOFOUND:                    "MarketingLuckDrawAwardNoFound",
 	BASERR_MARKETING_LUCKDRAW_ACTIVITY_INVALID:                 "MarketingLuckDrawActivityInValid",
-	BASERR_MARKETING_LUCKDRAW_INCORRECT_PRECISION:              "MarketingLuckDrawIncorrectPrecision",
-	BASERR_MARKETING_LUCKDRAW_DRAWER_ZERO:                      "MarketingLuckDrawDrawerZero",
-	BASERR_MARKETING_LUCKDRAW_DRAWER_EXISTS:                    "MarketingLuckDrawDrawerExists",
-	BASERR_MARKETING_LUCKDRAW_DRAWER_TIMEOUT:                   "MarketingLuckDrawDrawerTimeout",
-	BASERR_MARKETING_LUCKDRAW_DRAWER_NOFOUND:                   "MarketingLuckDrawDrawerNoFound",
-	BASERR_MARKETING_LUCKDRAW_DRAWER_INVALID:                   "MarketingLuckDrawDrawerInvalid",
-	BASERR_MARKETING_LUCKDRAW_DRAWER_TRANSFERFLAG_NOT_AFFECTED: "MarketingLuckDrawDrawerTransferflagNotAffected",
-	BASERR_MARKETING_LUCKDRAW_AWARD_INVALID:                    "MarketingLuckDrawAwardInvalid",
+	BASERR_MARKETING_LUCKDRAW_INCORRECT_PRECISION:        "MarketingLuckDrawIncorrectPrecision",
+	BASERR_MARKETING_LUCKDRAW_DRAWER_ZERO:                "MarketingLuckDrawDrawerZero",
+	BASERR_MARKETING_LUCKDRAW_DRAWER_EXISTS:              "MarketingLuckDrawDrawerExists",
+	BASERR_MARKETING_LUCKDRAW_DRAWER_TIMEOUT:             "MarketingLuckDrawDrawerTimeout",
+	BASERR_MARKETING_LUCKDRAW_DRAWER_NOFOUND:             "MarketingLuckDrawDrawerNoFound",
+	BASERR_MARKETING_LUCKDRAW_DRAWER_INVALID:             "MarketingLuckDrawDrawerInvalid",
+	BaserrMarketingLuckdrawDrawerTransferflagNotAffected: "MarketingLuckDrawDrawerTransferflagNotAffected",
+	BASERR_MARKETING_LUCKDRAW_AWARD_INVALID:              "MarketingLuckDrawAwardInvalid",
+
 
 	//
 	BASERR_CARDMARKET_PHONEPOOL_LOCK_FAIL: "CardMarketPhonePoolLockFail",
 	BASERR_CARDMARKET_PHONEPOOL_UNLOCK_FAIL: "CardMarketPhonePoolUnLockFail",
 	BASERR_CARDMARKET_PHONEPOOL_USE_FAIL: "CardMarketPhonePoolUseFail",
 	BASERR_CARDMARKET_PHONEPOOL_UNUSE_FAIL:"CardMarketPhonePoolUnUseFail",
+
 }
 
 func (x EnumBasErr) Code() int {
