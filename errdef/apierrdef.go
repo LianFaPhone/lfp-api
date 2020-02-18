@@ -164,6 +164,7 @@ const (
 	BASERR_CARDMARKET_PHONEPOOL_USE_FAIL EnumBasErr = BasMoreErrBegin + 1102 //号码占用失败
 	BASERR_CARDMARKET_PHONEPOOL_UNUSE_FAIL EnumBasErr = BasMoreErrBegin + 1103 //号码解占用失败
 
+	BASERR_CARDMARKET_PHONECARD_APPLY_FAID_AND_SHOW EnumBasErr = BasMoreErrBegin + 1110 //卡申请失败显示弹窗
 
 )
 
@@ -311,6 +312,9 @@ var EnumBasErr_desc = map[EnumBasErr]string{
 	BASERR_CARDMARKET_PHONEPOOL_UNLOCK_FAIL: "CardMarketPhonePoolUnLockFail",
 	BASERR_CARDMARKET_PHONEPOOL_USE_FAIL: "CardMarketPhonePoolUseFail",
 	BASERR_CARDMARKET_PHONEPOOL_UNUSE_FAIL:"CardMarketPhonePoolUnUseFail",
+
+	BASERR_CARDMARKET_PHONECARD_APPLY_FAID_AND_SHOW:"CardMarketPhoneCardApplyFailAndShow",
+
 
 }
 
