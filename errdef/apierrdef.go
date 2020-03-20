@@ -166,6 +166,9 @@ const (
 
 	BASERR_CARDMARKET_PHONECARD_APPLY_FAID_AND_SHOW EnumBasErr = BasMoreErrBegin + 1110 //卡申请失败显示弹窗
 	BASERR_CARDMARKET_PHONECARD_APPLY_FAID_RETRY_OR_SHOW EnumBasErr = BasMoreErrBegin + 1111 //卡申请失败显示弹窗
+	BASERR_CARDMARKET_PHONECARD_APPLY_HelpUser EnumBasErr = BasMoreErrBegin + 1112 //卡申请失败显示弹窗
+	BASERR_CARDMARKET_PHONECARD_FastAPPLY_Dxnbhk EnumBasErr = BasMoreErrBegin + 1113
+
 )
 
 // cobank定义的错误码
